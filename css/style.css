@@ -1746,46 +1746,52 @@ body {
     padding-bottom: 0px;
     margin-top: 24px;
   }
-  /* line 1059, ../your-day-project/src/sass/style.sass */
+}
+
+@media (max-width: 768px) {
+  /* line 1063, ../your-day-project/src/sass/style.sass */
   .wrapper {
-    /* Переводим в вертикальную композицию */
-    position: relative;
-    margin-top: 16px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    padding-bottom: 20px;
-    /* "ТВОЙ ДЕНЬ" */
-    /* картинка */
-    /* зелёная капсула "Студия детских праздников" остаётся поверх фото */
+    /* контейнер над картинкой – именно к нему привязываем текст */
   }
-  /* line 1070, ../your-day-project/src/sass/style.sass */
+  /* line 1073, ../your-day-project/src/sass/style.sass */
+  .wrapper__img-box {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+  }
+  /* line 1078, ../your-day-project/src/sass/style.sass */
+  .wrapper__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    margin-bottom: 0;
+  }
+  /* line 1085, ../your-day-project/src/sass/style.sass */
   .wrapper__text {
     position: absolute;
-    left: 10px;
-    top: 0px;
+    left: 1%;
+    top: calc(100% * 0 / 225);
     margin: 0;
     font-weight: 800;
     line-height: 1;
     color: #5EA751;
-    white-space: nowrap !important;
-    font-size: clamp(10px, 11vw, 38px);
+    white-space: nowrap;
+    font-size: clamp(14px, 9vw, 40px);
+    z-index: 2;
   }
-  /* line 1082, ../your-day-project/src/sass/style.sass */
-  .wrapper__img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 20px;
-    margin: 0;
-    z-index: 1;
-  }
-  /* line 1092, ../your-day-project/src/sass/style.sass */
+  /* line 1097, ../your-day-project/src/sass/style.sass */
   .wrapper__btn {
-    order: 3;
     position: static;
+    z-index: 5;
+    order: 3;
     background-color: #B6FF98;
     color: #334D38;
     border: none;
@@ -1797,22 +1803,16 @@ body {
     width: 100%;
     max-width: 100%;
     padding: 12px 16px;
-    margin: 10px 0 0 0;
+    margin: 10px 0 20px 0;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
     white-space: normal;
     text-transform: uppercase;
-  }
-  /* ХАК: чтобы капсула не оказалась обрезана */
-  /* просто гарантируем, что .wrapper имеет достаточный нижний паддинг */
-  /* line 1113, ../your-day-project/src/sass/style.sass */
-  .wrapper {
-    padding-bottom: 20px;
   }
   /* ===== СЕКЦИЯ С ТЕКСТОМ (slogan-section) ===== */
   /* line 1119, ../your-day-project/src/sass/style.sass */
   .slogan-section {
     background: transparent;
-    padding-top: -10px;
+    margin-top: 16px;
     padding-bottom: 32px;
   }
   /* line 1123, ../your-day-project/src/sass/style.sass */
@@ -2394,14 +2394,14 @@ body {
   .price-card__video {
     order: 6;
     position: static;
-    width: calc(100% - 32px);
-    max-width: 310px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 320px;
+    margin: 8px auto 0;
     background: #B6FF98;
     color: #334D38;
     border: none;
     border-radius: 9999px;
-    padding: 8px 0px;
+    padding: 8px 0;
     font-size: 14px;
     font-weight: 600;
     line-height: 1.3;
@@ -2448,21 +2448,27 @@ body {
     border-radius: 50%;
     box-sizing: border-box;
     border: none;
-    background: rgba(203, 255, 181, 0.9);
+    background: #B6FF98;
     font-size: 20px;
     line-height: 1;
     cursor: pointer;
     z-index: 5;
   }
-  /* line 1704, ../your-day-project/src/sass/style.sass */
+  /* line 1701, ../your-day-project/src/sass/style.sass */
+  .price-carousel__btn:hover {
+    background: #B6FF98;
+    color: #fff;
+  }
+  /* line 1705, ../your-day-project/src/sass/style.sass */
   .price-carousel__btn--prev {
+    display: none !important;
     left: 20px;
   }
-  /* line 1707, ../your-day-project/src/sass/style.sass */
+  /* line 1709, ../your-day-project/src/sass/style.sass */
   .price-carousel__btn--next {
     right: 20px;
   }
-  /* line 1711, ../your-day-project/src/sass/style.sass */
+  /* line 1713, ../your-day-project/src/sass/style.sass */
   .price-card {
     width: 100%;
     max-width: 100%;
@@ -2471,53 +2477,9 @@ body {
   }
 }
 
-/* ===== ДОП. УЖАТИЕ ЧУТЬ МЕЛЬЧЕ ДЛЯ ЭКРАНОВ ~375px ===== */
-@media (max-width: 430px) {
-  /* line 1720, ../your-day-project/src/sass/style.sass */
-  .price-section__container,
-  .price-card {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  /* line 1724, ../your-day-project/src/sass/style.sass */
-  .price-card {
-    padding: 20px 14px 24px;
-  }
-  /* line 1727, ../your-day-project/src/sass/style.sass */
-  .price-card__name {
-    font-size: 20px;
-  }
-  /* line 1730, ../your-day-project/src/sass/style.sass */
-  .price-card__age {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-  }
-  /* line 1735, ../your-day-project/src/sass/style.sass */
-  .price-card .chip {
-    font-size: 15px;
-    padding: 11px 14px;
-  }
-  /* line 1739, ../your-day-project/src/sass/style.sass */
-  .price-card__list {
-    font-size: 15px;
-    line-height: 1.4;
-  }
-  /* line 1743, ../your-day-project/src/sass/style.sass */
-  .price-card__price, .price-card__includes {
-    font-size: 14px;
-    line-height: 1.4;
-  }
-  /* line 1748, ../your-day-project/src/sass/style.sass */
-  .price-card__video {
-    font-size: 14px;
-    padding: 12px 14px;
-  }
-}
-
 /* ===== МОБИЛЬНЫЙ АДАПТИВ "ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ" ===== */
 @media (max-width: 768px) {
-  /* line 1754, ../your-day-project/src/sass/style.sass */
+  /* line 1723, ../your-day-project/src/sass/style.sass */
   .extras-section {
     background: #B6FF98;
     padding: 40px 16px 32px;
@@ -2525,13 +2487,13 @@ body {
     margin-top: 20px;
     /* главный заголовок остаётся на зелёном фоне */
   }
-  /* line 1760, ../your-day-project/src/sass/style.sass */
+  /* line 1729, ../your-day-project/src/sass/style.sass */
   .extras-section__container {
     max-width: 360px;
     margin: 0 auto;
     padding: 0;
   }
-  /* line 1766, ../your-day-project/src/sass/style.sass */
+  /* line 1735, ../your-day-project/src/sass/style.sass */
   .extras-section__title {
     text-align: center;
     width: 100%;
@@ -2543,7 +2505,7 @@ body {
     text-transform: uppercase;
   }
   /* каждая .extras — белая карточка под заголовком */
-  /* line 1777, ../your-day-project/src/sass/style.sass */
+  /* line 1746, ../your-day-project/src/sass/style.sass */
   .extras {
     background: #ffffff;
     border-radius: 20px 20px 20px 20px;
@@ -2554,7 +2516,7 @@ body {
     align-items: stretch !important;
     gap: 10px !important;
   }
-  /* line 1787, ../your-day-project/src/sass/style.sass */
+  /* line 1756, ../your-day-project/src/sass/style.sass */
   .extras__left {
     width: 100%;
     display: flex !important;
@@ -2563,7 +2525,7 @@ body {
     justify-content: space-between !important;
     gap: 8px !important;
   }
-  /* line 1795, ../your-day-project/src/sass/style.sass */
+  /* line 1764, ../your-day-project/src/sass/style.sass */
   .extras__subtitle {
     margin: 0 !important;
     flex: 1 1 auto !important;
@@ -2575,7 +2537,7 @@ body {
     margin-left: 10px !important;
   }
   /* блок цены внутри карточки */
-  /* line 1806, ../your-day-project/src/sass/style.sass */
+  /* line 1775, ../your-day-project/src/sass/style.sass */
   .extras-price {
     order: 0 !important;
     margin: 0 !important;
@@ -2586,7 +2548,7 @@ body {
     gap: 6px !important;
     white-space: nowrap !important;
   }
-  /* line 1816, ../your-day-project/src/sass/style.sass */
+  /* line 1785, ../your-day-project/src/sass/style.sass */
   .extras-price__badge {
     font-size: 14px !important;
     line-height: 1 !important;
@@ -2599,14 +2561,14 @@ body {
     justify-content: center !important;
     text-transform: uppercase !important;
   }
-  /* line 1828, ../your-day-project/src/sass/style.sass */
+  /* line 1797, ../your-day-project/src/sass/style.sass */
   .extras-price__text {
     font-size: 18px !important;
     line-height: 1.35 !important;
     margin: 0 !important;
   }
   /* карусель тоже внутри белой карточки */
-  /* line 1834, ../your-day-project/src/sass/style.sass */
+  /* line 1803, ../your-day-project/src/sass/style.sass */
   .extras__carousel,
   .extras-carousel {
     order: 3 !important;
@@ -2615,7 +2577,7 @@ body {
     position: relative !important;
     overflow: hidden !important;
   }
-  /* line 1842, ../your-day-project/src/sass/style.sass */
+  /* line 1811, ../your-day-project/src/sass/style.sass */
   .extras-carousel__track {
     display: flex !important;
     flex-wrap: nowrap;
@@ -2631,7 +2593,7 @@ body {
     transform: none !important;
     transition: none !important;
   }
-  /* line 1857, ../your-day-project/src/sass/style.sass */
+  /* line 1826, ../your-day-project/src/sass/style.sass */
   .extras-carousel__track > img {
     flex: 0 0 auto;
     width: 260px;
@@ -2641,11 +2603,11 @@ body {
     scroll-snap-align: center;
     display: block;
   }
-  /* line 1866, ../your-day-project/src/sass/style.sass */
+  /* line 1835, ../your-day-project/src/sass/style.sass */
   .extras-carousel__track::-webkit-scrollbar {
     display: none;
   }
-  /* line 1869, ../your-day-project/src/sass/style.sass */
+  /* line 1838, ../your-day-project/src/sass/style.sass */
   .carousel-btn {
     display: none;
     position: absolute !important;
@@ -2665,12 +2627,14 @@ body {
     line-height: 1 !important;
     z-index: 10;
   }
-  /* line 1889, ../your-day-project/src/sass/style.sass */
+  /* line 1858, ../your-day-project/src/sass/style.sass */
   .carousel-btn.prev {
+    display: none !important;
     left: 0 !important;
   }
-  /* line 1892, ../your-day-project/src/sass/style.sass */
+  /* line 1862, ../your-day-project/src/sass/style.sass */
   .carousel-btn.next {
+    display: none !important;
     right: 0 !important;
     width: 36px !important;
     height: 36px !important;
@@ -2680,7 +2644,7 @@ body {
 
 @media (max-width: 768px) {
   /* вся секция */
-  /* line 1901, ../your-day-project/src/sass/style.sass */
+  /* line 1872, ../your-day-project/src/sass/style.sass */
   .findus {
     background: #ffff !important;
     padding: 40px 32px 20px !important;
@@ -2688,7 +2652,7 @@ body {
     /* убираем большую зелёную дугу на мобиле */
     /* мы ПОЛНОСТЬЮ переопределяем сетку */
   }
-  /* line 1906, ../your-day-project/src/sass/style.sass */
+  /* line 1877, ../your-day-project/src/sass/style.sass */
   .findus__title {
     font-size: 28px !important;
     line-height: 1.2 !important;
@@ -2698,50 +2662,54 @@ body {
     text-transform: uppercase !important;
     text-align: center;
   }
-  /* line 1915, ../your-day-project/src/sass/style.sass */
+  /* line 1886, ../your-day-project/src/sass/style.sass */
   .findus__stage {
     position: relative !important;
     padding: 0 !important;
   }
-  /* line 1920, ../your-day-project/src/sass/style.sass */
+  /* line 1891, ../your-day-project/src/sass/style.sass */
   .findus__path {
     display: none !important;
   }
-  /* line 1924, ../your-day-project/src/sass/style.sass */
+  /* line 1895, ../your-day-project/src/sass/style.sass */
   .findus__grid {
     display: flex !important;
     flex-wrap: wrap !important;
-    column-gap: 16px !important;
-    row-gap: 24px !important;
+    justify-content: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: none !important;
     margin: 0 auto !important;
     padding: 0 !important;
-    max-width: 320px !important;
     position: relative !important;
-    left: 8px !important;
+    left: 0 !important;
   }
   /* общая карточка с фото (МЕТРО, МЕЧЕТЬ, ДОМ, ПАРКОВКА, СТУДИЯ) */
-  /* line 1936, ../your-day-project/src/sass/style.sass */
+  /* line 1908, ../your-day-project/src/sass/style.sass */
   .findus-card {
-    width: 147px !important;
+    flex: 1 1 calc(50% - 8px) !important;
+    max-width: calc(50% - 8px) !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
     text-align: center !important;
+    box-sizing: border-box !important;
   }
-  /* line 1944, ../your-day-project/src/sass/style.sass */
+  /* line 1918, ../your-day-project/src/sass/style.sass */
   .findus-card img {
-    width: 147px !important;
-    height: 147px !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
     object-fit: cover !important;
     border-radius: 20px !important;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
   }
-  /* line 1951, ../your-day-project/src/sass/style.sass */
+  /* line 1926, ../your-day-project/src/sass/style.sass */
   .findus-card__idx {
     display: none !important;
   }
-  /* line 1954, ../your-day-project/src/sass/style.sass */
+  /* line 1929, ../your-day-project/src/sass/style.sass */
   .findus-card__caption {
     margin-top: 12px !important;
     font-size: 16px !important;
@@ -2751,9 +2719,10 @@ body {
     letter-spacing: .3px !important;
   }
   /* контейнер с "МЫ ТУТ!" */
-  /* line 1963, ../your-day-project/src/sass/style.sass */
+  /* line 1938, ../your-day-project/src/sass/style.sass */
   .findus-curvecell {
-    width: calc(50% - 8px) !important;
+    flex: 1 1 calc(50% - 8px) !important;
+    max-width: calc(50% - 8px) !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -2763,7 +2732,7 @@ body {
     background: transparent !important;
   }
   /* сам блок "МЫ ТУТ!" */
-  /* line 1974, ../your-day-project/src/sass/style.sass */
+  /* line 1949, ../your-day-project/src/sass/style.sass */
   .findus-cta {
     margin-top: 32px !important;
     gap: 10px !important;
@@ -2778,7 +2747,7 @@ body {
     align-items: flex-start !important;
     justify-content: flex-start !important;
   }
-  /* line 1988, ../your-day-project/src/sass/style.sass */
+  /* line 1963, ../your-day-project/src/sass/style.sass */
   .findus-cta__title {
     font-size: 18px !important;
     line-height: 0.8 !important;
@@ -2786,7 +2755,7 @@ body {
     color: #5EA751 !important;
     margin: 0 0 0px 0 !important;
   }
-  /* line 1995, ../your-day-project/src/sass/style.sass */
+  /* line 1970, ../your-day-project/src/sass/style.sass */
   .findus-cta__addr {
     /* если адрес не нужен под "МЫ ТУТ!" - можно скрыть */
     display: block !important;
@@ -2796,7 +2765,7 @@ body {
     color: #5EA751 !important;
     margin: 0 0 8px 0 !important;
   }
-  /* line 2004, ../your-day-project/src/sass/style.sass */
+  /* line 1979, ../your-day-project/src/sass/style.sass */
   .findus-cta__btn {
     display: flex !important;
     align-items: center !important;
@@ -2810,7 +2779,7 @@ body {
     cursor: pointer !important;
     margin: 0 !important;
   }
-  /* line 2017, ../your-day-project/src/sass/style.sass */
+  /* line 1992, ../your-day-project/src/sass/style.sass */
   .findus-cta__arrow {
     stroke: #5EA751 !important;
     stroke-width: 3px !important;
@@ -2819,34 +2788,34 @@ body {
     transform: rotate(180deg) !important;
   }
   /* 1. МЕТРО -> первый слева, верхняя строка */
-  /* line 2025, ../your-day-project/src/sass/style.sass */
+  /* line 2000, ../your-day-project/src/sass/style.sass */
   .findus__grid > *:nth-child(1) {
     order: 1 !important;
   }
   /* 2. МЕЧЕТЬ -> справа от метро */
-  /* line 2029, ../your-day-project/src/sass/style.sass */
+  /* line 2004, ../your-day-project/src/sass/style.sass */
   .findus__grid > *:nth-child(2) {
     order: 2 !important;
   }
   /* 3. ДОМ -> слева второй строки */
-  /* line 2033, ../your-day-project/src/sass/style.sass */
+  /* line 2008, ../your-day-project/src/sass/style.sass */
   .findus__grid > *:nth-child(3) {
     order: 3 !important;
   }
   /* 6. ПАРКОВКА (у тебя в HTML она идёт шестой!) должна оказаться
      справа второй строки, поэтому ставим order:4 */
-  /* line 2038, ../your-day-project/src/sass/style.sass */
+  /* line 2013, ../your-day-project/src/sass/style.sass */
   .findus__grid > *:nth-child(6) {
     order: 4 !important;
   }
   /* 5. СТУДИЯ должна быть снизу слева (третья строка левая) */
-  /* line 2042, ../your-day-project/src/sass/style.sass */
+  /* line 2017, ../your-day-project/src/sass/style.sass */
   .findus__grid > *:nth-child(5) {
     order: 5 !important;
   }
   /* 4. МЫ ТУТ! блок (findus-curvecell) должен быть снизу справа,
      то есть последним визуально */
-  /* line 2047, ../your-day-project/src/sass/style.sass */
+  /* line 2022, ../your-day-project/src/sass/style.sass */
   .findus__grid > *:nth-child(4) {
     order: 6 !important;
   }
@@ -2854,11 +2823,11 @@ body {
 
 @media (max-width: 768px) {
   /* футер: логотип слева, VK+почта справа */
-  /* line 2053, ../your-day-project/src/sass/style.sass */
+  /* line 2028, ../your-day-project/src/sass/style.sass */
   .footer {
     padding: 12px 0 !important;
   }
-  /* line 2056, ../your-day-project/src/sass/style.sass */
+  /* line 2031, ../your-day-project/src/sass/style.sass */
   .footer__container {
     max-width: 100% !important;
     padding: 0 16px !important;
@@ -2868,19 +2837,19 @@ body {
     justify-content: space-between !important;
     gap: 12px !important;
   }
-  /* line 2065, ../your-day-project/src/sass/style.sass */
+  /* line 2040, ../your-day-project/src/sass/style.sass */
   .footer__left {
     order: 1 !important;
     display: flex !important;
     align-items: flex-end;
     gap: 14px;
   }
-  /* line 2071, ../your-day-project/src/sass/style.sass */
+  /* line 2046, ../your-day-project/src/sass/style.sass */
   .footer__logo {
     width: 25px !important;
     height: auto !important;
   }
-  /* line 2076, ../your-day-project/src/sass/style.sass */
+  /* line 2051, ../your-day-project/src/sass/style.sass */
   .footer__brand {
     font-size: 10px !important;
     line-height: 1.1 !important;
@@ -2891,7 +2860,7 @@ body {
     position: relative;
     top: 2px;
   }
-  /* line 2086, ../your-day-project/src/sass/style.sass */
+  /* line 2061, ../your-day-project/src/sass/style.sass */
   .footer__right {
     order: 2 !important;
     display: flex !important;
@@ -2899,19 +2868,19 @@ body {
     gap: 8px !important;
     margin-top: 4px;
   }
-  /* line 2093, ../your-day-project/src/sass/style.sass */
+  /* line 2068, ../your-day-project/src/sass/style.sass */
   .footer__icon {
     width: 18px !important;
     height: auto !important;
   }
-  /* line 2097, ../your-day-project/src/sass/style.sass */
+  /* line 2072, ../your-day-project/src/sass/style.sass */
   .footer__mail {
     font-size: 14px !important;
     font-weight: 700 !important;
   }
 }
 
-/* line 2102, ../your-day-project/src/sass/style.sass */
+/* line 2077, ../your-day-project/src/sass/style.sass */
 .video-modal-2 {
   display: none;
   position: fixed;
@@ -2926,7 +2895,7 @@ body {
   z-index: 9999;
 }
 
-/* line 2114, ../your-day-project/src/sass/style.sass */
+/* line 2089, ../your-day-project/src/sass/style.sass */
 .video-modal-2__body {
   width: 100%;
   padding: 20px 10px;
@@ -2936,12 +2905,12 @@ body {
   color: #334D38;
 }
 
-/* line 2122, ../your-day-project/src/sass/style.sass */
+/* line 2097, ../your-day-project/src/sass/style.sass */
 .video-modal-2.active {
   display: flex;
 }
 
-/* line 2125, ../your-day-project/src/sass/style.sass */
+/* line 2100, ../your-day-project/src/sass/style.sass */
 .video-modal-2__content {
   background: #fff;
   padding: 24px 32px;
@@ -2954,7 +2923,7 @@ body {
   animation: fadeIn .3s ease;
 }
 
-/* line 2136, ../your-day-project/src/sass/style.sass */
+/* line 2111, ../your-day-project/src/sass/style.sass */
 .video-modal-2__close {
   margin-top: 16px;
   background: #b2f7a1;
@@ -2967,7 +2936,7 @@ body {
   transition: background .2s ease;
 }
 
-/* line 2146, ../your-day-project/src/sass/style.sass */
+/* line 2121, ../your-day-project/src/sass/style.sass */
 .video-modal-2__close:hover {
   background: #a2ec90;
 }

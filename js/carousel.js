@@ -299,15 +299,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const carousel = document.querySelector('.price-carousel');
   if (!carousel) return;
 
-  const track   = carousel.querySelector('.price-carousel__track');
-  const slides  = Array.from(track.querySelectorAll('.price-card'));
-  const prevBtn = carousel.querySelector('.price-carousel__btn--prev');
+  const track  = carousel.querySelector('.price-carousel__track');
+  const slides = Array.from(track ? track.querySelectorAll('.price-card') : []);
   const nextBtn = carousel.querySelector('.price-carousel__btn--next');
 
-  if (!track || !slides.length || !prevBtn || !nextBtn) return;
+  if (!track || !slides.length || !nextBtn) return;
 
-  const GAP = 12; // ⬅️ обязательно такой же, как gap в SASS (.price-carousel__track)
-
+  const GAP = 12; // как в SASS
   let index = 0;
 
   const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
@@ -318,46 +316,37 @@ document.addEventListener('DOMContentLoaded', function () {
     return rect.width + GAP;
   }
 
-  function updateButtons() {
-    if (!isMobile()) {
-      prevBtn.disabled = false;
-      nextBtn.disabled = false;
-      return;
-    }
-
-    const slideWidth = getSlideWidth();
-    if (!slideWidth) return;
-
-    index = Math.round(track.scrollLeft / slideWidth);
-
-    prevBtn.disabled = index <= 0;
-    nextBtn.disabled = index >= slides.length - 1;
-  }
-
   function scrollToIndex(i) {
-    if (!isMobile()) return;
+  const slideWidth = getSlideWidth();
+  if (!slideWidth) return;
 
-    const slideWidth = getSlideWidth();
-    if (!slideWidth) return;
+  index = Math.max(0, Math.min(i, slides.length - 1));
 
-    index = Math.max(0, Math.min(i, slides.length - 1));
+  track.scrollTo({
+    left: slideWidth * index,
+    behavior: 'smooth',
+  });
+}
 
-    track.scrollTo({
-      left: slideWidth * index,
-      behavior: 'smooth'
-    });
-  }
-
-  prevBtn.addEventListener('click', () => scrollToIndex(index - 1));
-  nextBtn.addEventListener('click', () => scrollToIndex(index + 1));
-
-  track.addEventListener('scroll', () => {
-    window.requestAnimationFrame(updateButtons);
+  nextBtn.addEventListener('click', () => {
+    scrollToIndex(index + 1);
   });
 
-  window.addEventListener('resize', updateButtons);
+  // следим за скроллом пальцем и обновляем index
+  track.addEventListener('scroll', () => {
+    if (!isMobile()) return;
+    const slideWidth = getSlideWidth();
+    if (!slideWidth) return;
+    index = Math.round(track.scrollLeft / slideWidth);
+  });
 
-  updateButtons();
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      // при выходе из мобилы сбрасываем скролл
+      track.scrollTo({ left: 0 });
+      index = 0;
+    }
+  });
 });
 
 
@@ -389,3 +378,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeBtn)  closeBtn.addEventListener('click', closeModal);
     if (backdrop)  backdrop.addEventListener('click', closeModal);
   });
+
+//ДЛЯ АДАПТИВА
+// === ФИКС ДЛЯ ANDROID (VH-БАГ) ===
+// предотвращает съезжание блоков на телефонах Honor / Samsung и др.
+function fixVh() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// вызываем при загрузке, ресайзе и смене ориентации
+window.addEventListener('resize', fixVh);
+window.addEventListener('orientationchange', fixVh);
+fixVh();
