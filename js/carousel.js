@@ -484,3 +484,460 @@ fixVh();
     nextBtn.addEventListener('click', () => goTo(index + 1));
   });
 })();
+
+//ОТЗЫВЫ ДЕКСТОП
+
+// carousel.js
+
+document.addEventListener('DOMContentLoaded', () => {
+  initPriceCarousel();
+  initExtrasCarousels();
+  initReviewsCarousel();
+});
+
+/* ================= ПРАЙС-ПАКЕТЫ ================= */
+function initPriceCarousel() {
+  const carousel = document.querySelector('.price-carousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.price-carousel__track');
+  const cards = track ? Array.from(track.children) : [];
+  const nextBtn = carousel.querySelector('.price-carousel__btn--next');
+  const dots = Array.from(
+    carousel.querySelectorAll('.price-carousel__dot')
+  );
+
+  if (!track || !cards.length || !nextBtn) return;
+
+  let index = 0;
+
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  function goToSlide(newIndex) {
+    if (isMobile()) {
+      track.style.transform = '';
+      return;
+    }
+
+    const maxIndex = cards.length - 1;
+    if (newIndex < 0) newIndex = 0;
+    if (newIndex > maxIndex) newIndex = maxIndex;
+    index = newIndex;
+
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = 32; // как в CSS
+    const offset = (cardWidth + gap) * index;
+
+    track.style.transition = 'transform 0.4s ease';
+    track.style.transform = `translateX(-${offset}px)`;
+
+    // точки
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('price-carousel__dot--active', i === index);
+    });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (isMobile()) return; // на мобиле свайп/скролл
+    goToSlide(index + 1);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      if (isMobile()) return;
+      goToSlide(i);
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      goToSlide(index);
+    } else {
+      track.style.transform = '';
+    }
+  });
+}
+
+/* ================= ДОП. УСЛУГИ (фото-карусели) ================= */
+// ===== ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ (карусели с фото) =====
+(function initExtrasCarousels() {
+  const carousels = document.querySelectorAll('.extras-carousel');
+  if (!carousels.length) return;
+
+  const GAP = 30; // gap между карточками в CSS: $gap: 30px;
+
+  carousels.forEach((carousel) => {
+    const track = carousel.querySelector('.extras-carousel__track');
+    if (!track) return;
+
+    const slides = Array.from(track.children);
+    const prevBtn = carousel.querySelector('.prev');
+    const nextBtn = carousel.querySelector('.next');
+
+    if (!slides.length || !prevBtn || !nextBtn) return;
+
+    let index = 0;
+
+    function getStep() {
+      const first = slides[0];
+      return first.getBoundingClientRect().width + GAP;
+    }
+
+    function getMaxIndex() {
+      const wrapperWidth = carousel.getBoundingClientRect().width;
+      const step = getStep();
+      const visible = Math.max(1, Math.round(wrapperWidth / step));
+      return Math.max(0, slides.length - visible);
+    }
+
+    let step = getStep();
+    let maxIndex = getMaxIndex();
+
+    function update() {
+      // на мобиле отключаем логику JS – там скролл пальцем
+      if (window.innerWidth <= 768) {
+        track.style.transform = 'none';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        return;
+      }
+
+      track.style.transform = `translateX(${-index * step}px)`;
+
+      // левая скрыта на первом слайде
+      prevBtn.style.display = index <= 0 ? 'none' : 'flex';
+      // правая скрыта на последнем «кадре»
+      nextBtn.style.display = index >= maxIndex ? 'none' : 'flex';
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (index > 0) {
+        index -= 1;              // листаем по ОДНОЙ картинке влево
+        update();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (index < maxIndex) {
+        index += 1;              // листаем по ОДНОЙ картинке вправо
+        update();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      step = getStep();
+      maxIndex = getMaxIndex();
+      if (index > maxIndex) index = maxIndex;
+      update();
+    });
+
+    // начальное состояние
+    update();
+  });
+})();
+
+
+/* ================= ОТЗЫВЫ (карусель с зелёным фоном) ================= */
+// carousel.js
+
+document.addEventListener('DOMContentLoaded', () => {
+  initPriceCarousel();
+  initExtrasCarousels();
+  initReviewsCarousel();
+});
+
+/* ============ ПРАЙС-ПАКЕТЫ ============ */
+function initPriceCarousel() {
+  const carousel = document.querySelector('.price-carousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.price-carousel__track');
+  const cards = track ? Array.from(track.children) : [];
+  const nextBtn = carousel.querySelector('.price-carousel__btn--next');
+  const dots = Array.from(carousel.querySelectorAll('.price-carousel__dot'));
+
+  if (!track || !cards.length || !nextBtn) return;
+
+  let index = 0;
+
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  function goToSlide(newIndex) {
+    if (isMobile()) {
+      track.style.transform = '';
+      return;
+    }
+
+    const maxIndex = cards.length - 1;
+    if (newIndex < 0) newIndex = 0;
+    if (newIndex > maxIndex) newIndex = maxIndex;
+    index = newIndex;
+
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = 32; // такой же, как в CSS
+    const offset = (cardWidth + gap) * index;
+
+    track.style.transition = 'transform 0.4s ease';
+    track.style.transform = `translateX(-${offset}px)`;
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('price-carousel__dot--active', i === index);
+    });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (isMobile()) return;
+    goToSlide(index + 1);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      if (isMobile()) return;
+      goToSlide(i);
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      goToSlide(index);
+    } else {
+      track.style.transform = '';
+    }
+  });
+}
+
+// === КАРУСЕЛЬ "ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ" (десктоп) ===
+// ===== КАРУСЕЛИ "ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ" (десктоп) =====
+(function initExtrasCarousels() {
+  const carousels = document.querySelectorAll('.extras-carousel');
+  if (!carousels.length) return;
+
+  carousels.forEach((carousel) => {
+    const track   = carousel.querySelector('.extras-carousel__track');
+    const slides  = Array.from(track ? track.querySelectorAll('img') : []);
+    const prevBtn = carousel.querySelector('.carousel-btn.prev');
+    const nextBtn = carousel.querySelector('.carousel-btn.next');
+
+    if (!track || !slides.length || !prevBtn || !nextBtn) return;
+
+    let currentIndex  = 0;
+    let visibleSlides = 1;
+
+    // показать / спрятать кнопку
+    function setBtnState(btn, isVisible) {
+      if (!btn) return;
+
+      if (isVisible) {
+        btn.style.display = 'flex';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+      } else {
+        btn.style.display = 'none';
+        btn.style.opacity = '0';
+        btn.disabled = true;
+      }
+    }
+
+    // сколько карточек реально влезает в видимую область
+    function recalcVisibleSlides() {
+      if (!slides.length) return;
+
+      const carouselWidth = carousel.getBoundingClientRect().width;
+      if (!carouselWidth) return;
+
+      // шаг между центрами/левыми краями соседних карточек (учитывает gap)
+      let step = 0;
+      if (slides.length > 1) {
+        step = slides[1].offsetLeft - slides[0].offsetLeft;
+      }
+      if (!step || step <= 0) {
+        step = slides[0].getBoundingClientRect().width;
+      }
+
+      visibleSlides = Math.max(1, Math.floor((carouselWidth + 1) / step));
+
+      const maxIndex = Math.max(0, slides.length - visibleSlides);
+      if (currentIndex > maxIndex) {
+        currentIndex = maxIndex;
+      }
+    }
+
+    // сдвиг трека
+    const firstOffset = slides[0].offsetLeft;
+    function updatePosition() {
+      const target = slides[currentIndex];
+      if (!target) return;
+
+      const shift = target.offsetLeft - firstOffset;
+      track.style.transition = 'transform 0.4s ease';
+      track.style.transform  = `translateX(-${shift}px)`;
+    }
+
+    // логика видимости стрелок
+    function updateButtons() {
+      const maxIndex = Math.max(0, slides.length - visibleSlides);
+
+      // слева — только если уже листали вправо
+      setBtnState(prevBtn, currentIndex > 0);
+
+      // справа — пока есть куда листать
+      setBtnState(nextBtn, currentIndex < maxIndex);
+    }
+
+    function goTo(index) {
+      const maxIndex = Math.max(0, slides.length - visibleSlides);
+      currentIndex = Math.min(Math.max(index, 0), maxIndex);
+      updatePosition();
+      updateButtons();
+    }
+
+    nextBtn.addEventListener('click', () => {
+      goTo(currentIndex + 1);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      goTo(currentIndex - 1);
+    });
+
+    function handleResize() {
+      recalcVisibleSlides();
+      updatePosition();
+      updateButtons();
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    // стартовое состояние
+    recalcVisibleSlides();
+    updatePosition();
+    updateButtons(); // здесь в начале: левая скрыта, правая видна
+  });
+})();
+
+
+
+
+
+
+
+
+
+
+/* ============ ОТЗЫВЫ (зелёный фон + карусель) ============ */
+/* ============ ОТЗЫВЫ (зелёный фон + карусель) ============ */
+document.addEventListener('DOMContentLoaded', () => {
+  initReviewsCarousel();
+});
+function initReviewsCarousel() {
+  const carousel = document.querySelector('.reviews-card__carousel');
+  if (!carousel) return;
+
+  const track   = carousel.querySelector('.carousel-mod');
+  const slides  = track ? Array.from(track.children) : [];
+  const prevBtn = carousel.querySelector('.carousel-button.prev');
+  const nextBtn = carousel.querySelector('.carousel-button.next');
+
+  if (!track || !slides.length || !prevBtn || !nextBtn) return;
+
+  let index = 0;
+
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  // расстояние между карточками (ширина + gap)
+  function getStep() {
+    if (slides.length === 0) return 0;
+    if (slides.length === 1) {
+      return slides[0].getBoundingClientRect().width;
+    }
+    const r1 = slides[0].getBoundingClientRect();
+    const r2 = slides[1].getBoundingClientRect();
+    return r2.left - r1.left; // учитывает и ширину, и gap
+  }
+
+  // показать/спрятать стрелку и включить/выключить её
+  function setArrowState(btn, isVisible) {
+    if (!btn) return;
+    if (isVisible) {
+      btn.style.visibility = 'visible';
+      btn.disabled = false;
+    } else {
+      btn.style.visibility = 'hidden';
+      btn.disabled = true;
+    }
+  }
+
+  function update() {
+    // На мобиле карусель скроллится пальцем — стрелки не нужны
+    if (isMobile()) {
+      track.style.transform = '';
+      setArrowState(prevBtn, false);
+      setArrowState(nextBtn, false);
+      return;
+    }
+
+    const step = getStep();
+    if (!step) return;
+
+    const itemsCount   = slides.length;
+    const viewportWidth = carousel.clientWidth;
+
+    // сколько карточек помещается в видимой области
+    const visibleCount = Math.max(1, Math.floor(viewportWidth / step));
+    const maxIndex     = Math.max(0, itemsCount - visibleCount);
+
+    // не выходим за границы
+    if (index < 0) index = 0;
+    if (index > maxIndex) index = maxIndex;
+
+    const offset = step * index;
+    track.style.transition = 'transform 0.4s ease';
+    track.style.transform  = `translateX(-${offset}px)`;
+
+    // левая стрелка — только если мы ушли от начала
+    setArrowState(prevBtn, index > 0);
+
+    // правая стрелка — только если ещё можно листать вправо
+    setArrowState(nextBtn, index < maxIndex);
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (isMobile()) return;
+    index -= 1;          // по одной карточке назад
+    update();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (isMobile()) return;
+    index += 1;          // по одной карточке вперёд
+    update();
+  });
+
+  window.addEventListener('resize', update);
+
+  // стартовое состояние: только правая стрелка
+  index = 0;
+  update();
+}
+
+
+
+
+const overlay = document.getElementById('offlineOverlay');
+
+function updateOnlineStatus() {
+  if (!navigator.onLine) {
+    overlay.style.display = 'flex';
+  } else {
+    overlay.style.display = 'none';
+  }
+}
+
+window.addEventListener('load', updateOnlineStatus);
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
