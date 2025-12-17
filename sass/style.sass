@@ -3,7 +3,7 @@
 
 @font-face
   font-family: "Borsok"
-  src: url("../fonts/borsok.ttf") format("truetype")
+  src: url("../fonts/Borsok.ttf") format("truetype")
   font-weight: normal
   font-style: normal
   font-display: swap
@@ -39,9 +39,13 @@ body
     &__header
         display: flex
         flex-direction: row
-        justify-content: space-between
+        justify-content: flex-start
         align-items: baseline
         gap: 13px
+    &__header img
+        width: 44px                  // ✅ размер логотипа (можешь 38–52)
+        height: auto
+        display: block
     &__nav-container
          display: flex
          flex-direction: row
@@ -52,7 +56,7 @@ body
         font-weight: 700
         font-family: $main-font
         color: #FF6088
-        font-size: 24px
+        font-size: 18px
         display: flex
         flex-direction: row
         justify-content: space-between
@@ -60,15 +64,15 @@ body
     display: inline-flex
     align-items: center
     justify-content: center
-
-    padding: 20px 50px      // 👉 сделала больше
+    margin-top: -30px
+    padding: 18px 44px     // 👉 сделала больше
     border-radius: 9999px
     border: none
 
     background-color: $text-color-light
     color: #fff            // белый текст, хорошо читается
     font-family: $main-font
-    font-size: 24px
+    font-size: 20px
     font-weight: 700
     line-height: 1
     text-decoration: none
@@ -98,27 +102,41 @@ body
  
 .wrapper
     position: relative
-    margin-top: 20px
+    margin-top: -40px
+    &__img
+        width: 100%
+        height: auto
+        display: block
+        border-radius: 60px
+        margin-bottom: 0
     &__text
         font-family: $third-font
         position: absolute
-        top: -13px
+        top: -40px
         font-size: 139px
         color: $text-color-light
         z-index: 10
     &__btn
-        font-size: 48px
-        left: 27px  
-        top: 660px  
+        background-color: #F7BBD7   // 💙 голубой фон
         color: $text-color
-        border: none
-        padding: 10px 50px 10px 50px
-        border-radius: 100px
         position: absolute
-        background-color: #F7BBD7
+        left: 70px                   // ✅ отступ как на скрине
+        bottom: 40px                 // ✅ привязка к низу картинки (без магии 660px)
+        font-size: 44px
+        padding: 16px 56px
+        border-radius: 9999px
+        border: none
         z-index: 20
     &__img
         margin-bottom: -50px
+.wrapper__img.mobile-img
+  display: none
+
+
+/* Скрываем изображение для десктопной версии на мобильных устройствах */
+.wrapper__img.desktop-img 
+  display: block
+
 .slogan-section
     position: relative
     background: $text-color
@@ -216,13 +234,14 @@ body
     display: flex
     justify-content: space-between
     align-items: center
-    margin-bottom: 40px
+    margin-bottom: -10px
 
   &__title
     font-family: $third-font
     margin: 0
     font-size: 64px              // можно чуть меньше, чем 64
-    color: $text-color-light  
+    color: $text-color-light
+    margin-bottom: -10px  
 
   &__note
     display: inline-flex
@@ -272,7 +291,8 @@ body
   grid-template-columns: 260px 1fr   // можно увеличить ширину label
   column-gap: 80px                   // 🔥 расстояние между label и text
   row-gap: 24px
-  padding: 18px 0
+  padding-top: 24px
+  padding-bottom: 24px
   border-bottom: 2px solid rgba($text-color, .55)
   align-items: center
 
@@ -286,7 +306,10 @@ body
     align-self: flex-start
     display: flex
     align-items: center
+    margin-top: -10px
+    
   &__text
+    margin-top: -10px
     color: $text-color
     font-size: 28px                 // 🔥 увеличено
     line-height: 1.6
@@ -326,6 +349,7 @@ body
         font-family: $third-font
         font-size: 64px
         color: $text-color-light
+  
     &__btn
         font-size: 24px
         color: $text-color
@@ -416,11 +440,12 @@ body
         padding: 65px 
 
     &__title
+        padding: 0 0 80px 0 
         font-family: $third-font
-        padding: 0 0 60px 0
         font-size: 64px
         color: $text-color-light
         text-transform: uppercase
+        margin-bottom: 0px
 
     &__card
         display: grid
@@ -430,7 +455,7 @@ body
 
     &__photo
         width: 470px
-        margin-top: 40px
+        margin-top: 16px
         aspect-ratio: 1 / 1
         border-radius: 30px 30px 100px 30px
         overflow: hidden
@@ -441,8 +466,7 @@ body
             display: block
 
     &__text
-        margin-top: 40px
-        transform: translateY(130px)
+        margin-top: 150px
         max-width: 650px
         font-size: 30px
         line-height: 1.6
@@ -535,10 +559,11 @@ body
     
     &__grid                      // ⬅️ БЫЛО ошибочно .chip__grid
         display: grid
-        grid-template-columns: 1fr 1fr
+        grid-template-columns: 360px 360px
         gap: 18px
         align-items: start
-    &__price                     // ⬅️ БЫЛО ошибочно .chip__price
+    &__price
+        width: 323px                      // ⬅️ БЫЛО ошибочно .chip__price
         background: $main-color-green
         border-radius: 30px
         padding: 20px 20px 20px 20px
@@ -617,6 +642,8 @@ body
         margin-right: 22px
         margin-bottom: 23px
         cursor: pointer
+        margin-left: auto
+        margin-right: 0px 
 
     &__arrow
         font-size: 18px
@@ -1139,15 +1166,20 @@ $text-color-light: #5EA751
     gap: 14px
 
   &__logo
-    width: 73px
+    width: 44px
     height: auto
     display: block
 
   &__brand
-    font-size: 24px
+    font-size: 18px
     font-weight: 800
     color: #FF6088
     letter-spacing: .5px
+    align-items: center
+    margin: 0
+    display: flex
+    flex-direction: row
+    justify-content: space-between
 
   &__right
     display: flex
@@ -1213,9 +1245,9 @@ $text-color-light: #5EA751
     justify-content: center
     align-items: center
     width: 100%
-    max-width: 300px
+    max-width: 450px
     padding: 12px 16px
-    font-size: 15px
+    font-size: 25px
     font-weight: 600
     border-radius: 9999px
     text-decoration: none
@@ -1236,6 +1268,7 @@ $text-color-light: #5EA751
     background-color: #FC3F1D       // Яндекс красный
     &:hover
       background-color: darken(#FC3F1D, 8%)
+
 
 
 .video-modal
@@ -1528,6 +1561,12 @@ $text-color-light: #5EA751
       box-shadow: 0 12px 24px rgba(0,0,0,.08)
       white-space: normal
       text-transform: uppercase
+  .wrapper__img.mobile-img 
+      display: block
+    
+  /* Скрываем изображение для десктопной версии на мобильных устройствах */
+  .wrapper__img.desktop-img
+      display: none
 
   /* ===== СЕКЦИЯ С ТЕКСТОМ (slogan-section) ===== */
 
@@ -1646,11 +1685,11 @@ $text-color-light: #5EA751
   /* ===== ПРАВИЛА (начало следующего блока, чтобы не разваливалось сразу после слогана) ===== */
 
   .rules-section
-    background-color: #F7BBD7
+  
     background-image: url('../image/BGRULES.png')
     background-repeat: no-repeat
     background-position: center top
-    background-size: 100% 100%
+    background-size: 100% auto
     padding: 60px 16px 0px
     border-radius: 20px
     position: relative
@@ -1675,7 +1714,7 @@ $text-color-light: #5EA751
       align-items: center
       justify-content: center
       text-align: center 
-      gap: 16px
+      gap: 25px
       margin-bottom: 24px
 
     &__title
@@ -1719,26 +1758,32 @@ $text-color-light: #5EA751
     gap: 12px
     padding: 16px 0
     border-width: 1px
+    padding-top: 20px
+    padding-bottom: 12px
+    row-gap: 12px
 
     &__label
       font-size: 18px
-      line-height: 1.3
+      line-height: 1.2
       color: $text-color-light
       font-weight: 700
       text-transform: uppercase
       letter-spacing: .4px
+      margin-bottom: 8px
 
     &__text
       font-size: 16px
       line-height: 1.45
       color: $text-color
       font-weight: 500
-
+    &::last-child
+      padding-bottom: 0
+  
   // ===== СЕКЦИЯ "ОБЗОР СТУДИИ" (мобилка) =====
   .four-section
     background-color: #FFFBEC
-    padding: 40px 16px 0px
-    margin-top: 20px
+    padding: 0px 16px 0px
+    margin-top: 0
 
     &__header
       // на мобиле заголовок и кнопка идут столбиком по центру
@@ -2025,7 +2070,7 @@ $text-color-light: #5EA751
     max-width: 100%
     grid-template-columns: unset
     box-sizing: border-box
-    border: 5px solid #B6FF98
+    border: 2px solid $text-color
     flex: 0 0 100%           // одна карточка = один экран
     scroll-snap-align: center
     scroll-snap-stop: always
@@ -2907,3 +2952,14 @@ $text-color-light: #5EA751
     font-size: 18px
     font-weight: 800
     color: $text-color-light
+
+@media (min-width: 769px)
+  .reviews-section
+    &__inner
+      max-width: 700px
+
+    &__btn
+      max-width: 700px
+      padding: 20px 36px
+      font-size: 32px
+      font-weight: 700
