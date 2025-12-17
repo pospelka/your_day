@@ -30,10 +30,9 @@ body
     background-image: url('../image/BGDESKTOP.png')
     background-color: $text-color
     background-repeat: no-repeat
-    background-position: center bottom   // ⬅ вместо center top
-    background-size: 100% auto           // не тянем по высоте
-    padding: 24px 0 140px                // ⬅ увеличили нижний padding,
-                                         //   чтобы картинка с рюшами влезла
+    background-position: center bottom   
+    background-size: 100% auto           
+    padding: 24px 0 140px                                   
     position: relative
     z-index: 10
     &__header
@@ -43,7 +42,7 @@ body
         align-items: baseline
         gap: 13px
     &__header img
-        width: 44px                  // ✅ размер логотипа (можешь 38–52)
+        width: 44px                  
         height: auto
         display: block
     &__nav-container
@@ -1619,95 +1618,34 @@ $text-color-light: #5EA751
       padding-top: 15px
       padding-bottom: 45px
 
-  // .slogan-section
-  //   background: transparent
-  //   margin-top: 16px      // ← было 24px, теперь текст поднимется ближе к верхнему краю
-  //   padding-bottom: 32px
-  // .slogan
-  //   width: 100%
-  //   max-width: 100%
-  //   display: flex
-  //   justify-content: center
-  //   align-items: center
-  //   text-align: center
-  //   padding: 0 0
-
-  //   &__text
-  //     /* превращаем в "карточку" с белым фоном */
-  //     background: #ffffff
-  //     border-radius: 20px
-  //     box-shadow: 0 20px 40px rgba(0,0,0,.07)
-  //     padding: 0px 16px 20px 16px
-  //     margin: 0
-  //     width: 100%
-  //     max-width: 340px
-  //     color: $text-color
-  //     text-transform: none
-  //     letter-spacing: 0
-  //     font-size: 16px
-  //     font-weight: 500
-  //     line-height: 1.55
-  //     text-align: center
-
-  //     /* делаем строки короче и ровнее, без <br> на каждое слово
-  //        но у тебя <br> уже в html, так что просто уменьшаем межстрочный,
-  //        чтобы абзац выглядел не рваными криками, а текстом */
-  //     br
-  //       display: none
-
-  //   &__highlight
-  //     color: $text-color-light
-  //     font-weight: 600
-
-  //   &__highlight-green
-  //     color: $text-color-light
-  //     font-weight: 600
-
-  //   &__emoji
-  //     display: none
-  //     display: inline-block
-  //     vertical-align: middle
-  //     margin: 0 6px          // чуть больше отступы
-  //     width: 34px            // было 22px
-  //     height: 32px
-
-  //     &--castle
-  //       width: 30px          // было 25px
-  //       height: auto
-  //     &--smile-left
-  //       width: 50px          // было 25px
-  //       height: auto
-  //     &--smile-right
-  //       width: 50px          // было 25px
-  //       height: auto
- 
+  
 
   /* ===== ПРАВИЛА (начало следующего блока, чтобы не разваливалось сразу после слогана) ===== */
 
   .rules-section
   
-    background-image: url('../image/BGRULES.png')
+    background-image: url('../image/BGRULES.svg')
     background-repeat: no-repeat
     background-position: center top
     background-size: 100% auto
     padding: 40px 16px 0px
     border-radius: 20px
     position: relative
-    margin-top: -16px       // легкое перекрытие зелёного блока
-    z-index: 3              // выше intro-green, ниже героя
+    margin-top: -16px       
+    z-index: 3             
     overflow: visible
     min-height: unset !important
     height: auto !important
-    padding-bottom: 40px      // см. пункт 2
+    padding-bottom: 40px     
 
     &::after
       content: ""
       position: absolute
-      top: -30px            // было -28, слишком высоко — поэтому лезла в героя
+      top: -30px            
       right: 15px
       width: 80px
       height: 80px
-      background: url('../image/ZIP.png') no-repeat center / contain
+      background: url('../image/ZIP.svg') no-repeat center / contain
       pointer-events: none
       z-index: 5    
     
@@ -1743,15 +1681,15 @@ $text-color-light: #5EA751
     &__illustration
       width: 100%
       max-width: 320px
-      height: 320px !important          // ✅ фиксированная высота, как ты просил ранее
+      height: 320px !important          
       border-radius: 24px 24px 100px 24px
       overflow: hidden
       margin: 0 auto 24px auto
       display: none !important
       img
         width: 100%
-        height: 100%                    // ✅ заполняет контейнер по высоте
-        object-fit: cover               // ✅ красиво обрезает, не растягивает
+        height: 100%                    
+        object-fit: cover               
         display: block
     &__list
       width: 100%
@@ -1790,7 +1728,6 @@ $text-color-light: #5EA751
     margin-top: 50px
 
     &__header
-      // на мобиле заголовок и кнопка идут столбиком по центру
       width: 100%
       flex-direction: column
       align-items: center
@@ -1803,12 +1740,12 @@ $text-color-light: #5EA751
       line-height: 0.8
       letter-spacing: 2px
       color: $text-color-light
-      font-size: 28px        // было 64px
+      font-size: 28px        
       text-align: left
       margin: 0
 
     &__btn
-      font-size: 14px        // было 24px
+      font-size: 14px        
       line-height: 1.3
       font-weight: 600
       padding: 10px 16px
@@ -1820,7 +1757,7 @@ $text-color-light: #5EA751
       max-width: 240px
       width: auto
 
-  // каждая карточка "блок студии": фото сверху, потом номер, потом текст
+  
   .four-section__block,
   .block
     width: 100%
@@ -1856,21 +1793,18 @@ $text-color-light: #5EA751
     line-height: 0.8
     letter-spacing: 1px
     color: #F7BBD7
-    font-size: 45px           // вместо 85px
+    font-size: 45px          
     margin: 8px 0 12px 0
 
   .block__text-2
-    font-size: 15px           // вместо 30px
+    font-size: 15px           
     line-height: 1.5
     font-weight: 500
     color: $text-color
     margin: 0
     max-width: 320px
 
-  // порядок элементов внутри блока.
-  // на десктопе в чётных блоках сначала текст, потом фото.
-  // на мобилке мы всё равно хотим: фото сверху, текст ниже.
-  // поэтому просто задаём order для детей.
+
   .four-section__block
     .block__img
       order: 1
@@ -1880,26 +1814,24 @@ $text-color-light: #5EA751
   // ===== СЕКЦИЯ "НАШ АДМИНИСТРАТОР" (мобилка) =====
 @media (max-width: 768px)
   .admin-section
-    background-color: $main-color                    // базовый голубой (можешь свой)
-    background-image: url('../image/BGBLUE.png')// твоя картинка с «облаками»
+    background-color: $main-color                    
+    background-image: url('../image/BGBLUE.svg')
     background-repeat: no-repeat
-    background-position: center top               // прижать картинку к верху
-    background-size: 100% 100%                    // по ширине, без растяжения по высоте
-    border-radius: 20px                           // без огромного 80px снизу
+    background-position: center top               
+    background-size: 100% 100%                    
+    border-radius: 0px                           
     min-height: auto
-    padding: 50px 16px 40px                  // ↑ 80px ≈ высота картинки, подгони
+    padding: 50px 0px 40px                  
     margin-top: 0
 
     &__container
-      // на мобиле контейнер не должен иметь больших внутренних отступов,
-      // иначе контент прилипает слишком далеко от краёв
       background: transparent
       border-radius: 0
       padding: 0
       display: flex
       flex-direction: column
       align-items: stretch
-      max-width: 340px
+      max-width: 350px
       margin: 0 auto
 
     &__title
@@ -1910,14 +1842,12 @@ $text-color-light: #5EA751
       font-size: 28px
       text-transform: uppercase
       margin: 0 0 20px 0
-      text-align: center       // ✅ центрируем текст
+      text-align: center       
       width: 100%
       max-width: none
       padding-bottom: 0px
 
     &__card
-      // вся белая карточка с фото и текстом под ним мы на мобиле НЕ делаем в сетку,
-      // а складываем в столбик и растягиваем на всю ширину
       background: #FFFBEC
       border-radius: 16px
       padding: 30px
@@ -1955,11 +1885,11 @@ $text-color-light: #5EA751
     &::after
       content: ""
       position: absolute
-      top: -20px          // подгони по макету
-      right: 16px         // подгони по макету
-      width: 80px         // размер скрепки на мобиле
+      top: -20px          
+      right: 16px         
+      width: 80px         
       height: 80px
-      background-image: url('../image/CLIPGREEN.png') // та же скрепка
+      background-image: url('../image/CLIPGREEN.svg') 
       background-size: contain
       background-repeat: no-repeat
       pointer-events: none
@@ -1967,10 +1897,10 @@ $text-color-light: #5EA751
 
 /* ===== МОБИЛЬНЫЙ ПРАЙС-ПАКЕТ (все экраны до 768px) ===== */
 @media (max-width: 768px)
-  /* сама секция */
+  
   .price-carousel
     position: relative
-    //БЛОК ТОЧЕК DOTS
+    
     &__dots
       display: flex !important
       justify-content: center
@@ -1999,18 +1929,18 @@ $text-color-light: #5EA751
       gap: 32px
   
 
-    // стрелки как у тебя были
+    
     &__btn
       display: inline-flex
       align-items: center
       justify-content: center
 
       position: absolute
-      top: 40px                // 👈 подними/опусти как нужно, сейчас около заголовка
+      top: 40px                
       transform: translateY(-50%)
       width: 36px
       height: 36px
-      padding: 0                // 👈 чтобы круг не растягивался
+      padding: 0                
       border-radius: 50%
       box-sizing: border-box
       border: none
@@ -2020,7 +1950,7 @@ $text-color-light: #5EA751
       cursor: pointer
       z-index: 5
       &:hover
-        background: $main-color-green  // тёмно-зелёный/текстовый
+        background: $main-color-green  
         color: #fff  
 
     &__btn--prev
@@ -2043,10 +1973,10 @@ $text-color-light: #5EA751
     box-sizing: border-box
     margin-bottom: 20px
 
-  /* внутренний контейнер */
+  
   .price-section__container
     width: 100%
-    max-width: 388px        // ← увеличиваем ширину контейнера
+    max-width: 388px        
     margin: 0 auto
     padding: 0
     display: flex
@@ -2054,7 +1984,6 @@ $text-color-light: #5EA751
     align-items: center
     box-sizing: border-box
 
-  /* заголовок "ПРАЙС-ПАКЕТЫ" */
   .price-section__title
     font-family: $third-font
     line-height: 1.2
@@ -2067,15 +1996,14 @@ $text-color-light: #5EA751
     text-transform: uppercase
     text-align: center
 
-  /* каждая карт
-    очка пакета */
+  
   .price-card
     width: 100%
     max-width: 100%
     grid-template-columns: unset
     box-sizing: border-box
     border: 1px solid $text-color
-    flex: 0 0 100%           // одна карточка = один экран
+    flex: 0 0 100%           
     scroll-snap-align: center
     scroll-snap-stop: always
     gap: 5px
@@ -2093,9 +2021,9 @@ $text-color-light: #5EA751
     /* ===== ШАПКА (название + возраст) ===== */
     &__header
       display: flex
-      align-items: center         // ✅ выравнивает по вертикали
-      justify-content: center     // ✅ центрирует по горизонтали
-      gap: 8px                    // ✅ отступ между заголовком и кругом
+      align-items: center         
+      justify-content: center     
+      gap: 8px                    
       text-align: center
       flex-wrap: wrap 
       margin-bottom: 8px  
@@ -2117,9 +2045,9 @@ $text-color-light: #5EA751
       width: 44px
       height: 44px
       border-radius: 9999px
-      border: none                         // ← убрали обводку
-      background-color: $main-color-green  // ← заливка круга (или любой другой цвет)
-      color: $text-color                   // ← цвет текста внутри, чтобы был контраст
+      border: none                         
+      background-color: $main-color-green  
+      color: $text-color                   
       font-size: 16px
       font-weight: 700
       display: flex
@@ -2134,13 +2062,13 @@ $text-color-light: #5EA751
       max-width: 320px
       border-radius: 16px
       overflow: hidden
-      margin: 0 auto 12px       // ← ОДИНАКОВЫЙ отступ вниз
+      margin: 0 auto 12px       
       padding: 0
-      height: auto           // не фиксируем высоту!
+      height: auto           
 
       img
         width: 100%
-        height: 200px     // 🔽 уменьши высоту под нужный размер
+        height: 200px     
         object-fit: cover 
         display: block
         border-radius: 16px 16px 80px 16px
@@ -2181,7 +2109,7 @@ $text-color-light: #5EA751
       line-height: 1.2
       text-align: left
       color: $text-color
-      list-style: none          // убираем цифры
+      list-style: none          
       padding-left: 0
       li
         display: flex
@@ -2195,7 +2123,7 @@ $text-color-light: #5EA751
     &__icon
       font-size: 12px
       color: #D0E9FF
-      margin-top: 2px          // чуть опустить иконку, чтобы красиво по baseline
+      margin-top: 2px          
       flex-shrink: 0
 
     /* ===== ЦЕНА + "в пакет входит" ===== */
@@ -2214,7 +2142,7 @@ $text-color-light: #5EA751
       background: $main-color-green
       border-radius: 10px 10px 40px 10px
       padding: 10px 14px
-      min-height: 105px              // фиксируем высоту блока
+      min-height: 105px              
       box-sizing: border-box
       display: grid
       grid-template-columns: 1fr auto
@@ -2224,12 +2152,12 @@ $text-color-light: #5EA751
       margin-top: 6px
 
       .price-card__price-title
-        grid-column: 2 / 3               // правая колонка
-        grid-row: 1 / -1                 // тянется по высоте текста
+        grid-column: 2 / 3               
+        grid-row: 1 / -1                 
         align-self: flex-start
-        position: static !important      // убираем absolute
-        display: inline-flex !important  // на всякий случай перекрываем display:none
-        padding: 2px 16px                // уменьшаем вертикальные отступы
+        position: static !important      
+        display: inline-flex !important  
+        padding: 2px 16px                
         height: auto
         line-height: 1
         white-space: nowrap
@@ -2237,7 +2165,7 @@ $text-color-light: #5EA751
         border: 1px solid $text-color
 
       p
-        grid-column: 1 / 2           // оба параграфа в левой колонке
+        grid-column: 1 / 2           
         margin: 0 0 4px
         padding: 0px 10px 0px 10px
         font-size: 13px
@@ -2252,8 +2180,8 @@ $text-color-light: #5EA751
       color: $text-color
       font-size: 11px
       line-height: 1.3
-      justify-content: center     // ⬅ центрируем контент вертикально
-      padding: 6px 12px 6px 25px    // одинаковые отступы сверху и снизу
+      justify-content: center     
+      padding: 6px 12px 6px 25px    
       min-height: 70px   
 
       &-inner
@@ -2271,11 +2199,11 @@ $text-color-light: #5EA751
           font-size: 11px
           line-height: 1.3
 
-          /* Удаляем десктопные большие точки */
+          
           &::before
             display: none !important
 
-          /* Добавляем маленькие мобильные точки */
+          
           &::after
             content: ""
             position: absolute
@@ -2286,7 +2214,7 @@ $text-color-light: #5EA751
             border-radius: 50%
             background: $text-color
 
-          /* Первая строка — БЕЗ маркера */
+          
           &:first-child
             padding-left: 0 !important
 
@@ -2295,10 +2223,10 @@ $text-color-light: #5EA751
 
     /* ===== КНОПКА "смотреть видео" ===== */
     &__video
-      order: 6                         // последним элементом
-      margin-top: auto !important      // прижимаем к низу карточки
-      margin-bottom: 0 !important      // расстояние снизу даёт только padding карточки
-      margin-left: auto !important     // центр по горизонтали
+      order: 6                         
+      margin-top: auto !important      
+      margin-bottom: 0 !important      
+      margin-left: auto !important     
       margin-right: auto !important
 
       max-width: 100% !important
@@ -2309,7 +2237,7 @@ $text-color-light: #5EA751
       position: static !important
 
       height: 30px !important
-      padding: 0 28px !important       // можешь подправить под нужную ширину
+      padding: 0 28px !important       
       white-space: nowrap !important
       font-size: 14px
 
@@ -2322,13 +2250,13 @@ $text-color-light: #5EA751
 @media (max-width: 768px)
   .extras-section
     background-color: $main-color
-    background-image: url('../image/BGGREEN.png')
+    background-image: url('../image/BGGREEN.svg')
     background-repeat: no-repeat
-    background-position: center top      // ← рюши к ВЕРХУ
+    background-position: center top      
     background-size: 100% 100%
-    padding: 40px 16px 40px              // ← 80px ≈ высота зоны с рюшами, подгони
-    border-radius: 0 0 20px 20px         // ← не режем рюши сверху
-    margin-top: 0                        // чтобы не было зазора до секции выше
+    padding: 40px 16px 40px              
+    border-radius: 0 0 20px 20px         
+    margin-top: 0                       
     position: relative
     overflow: visible
 
@@ -2337,7 +2265,7 @@ $text-color-light: #5EA751
       margin: 0 auto
       padding: 0
 
-    /* главный заголовок остаётся на зелёном фоне */
+    
     &__title
       font-family: $third-font
       line-height: 1.2
@@ -2349,7 +2277,7 @@ $text-color-light: #5EA751
       font-size: 28px
       text-transform: uppercase
 
-  /* каждая .extras — белая карточка под заголовком */
+  
   .extras
     background: $main-color
     border-radius: 20px 20px 20px 20px
@@ -2378,7 +2306,7 @@ $text-color-light: #5EA751
       text-transform: uppercase
       margin-left: 10px !important
 
-  /* блок цены внутри карточки */
+  
   .extras-price
     order: 0 !important
     margin: 0 !important
@@ -2406,7 +2334,7 @@ $text-color-light: #5EA751
       line-height: 1.35 !important
       margin: 0 !important
 
-  /* карусель тоже внутри белой карточки */
+ 
   .extras__carousel,
   .extras-carousel
     order: 3 !important
@@ -2445,9 +2373,9 @@ $text-color-light: #5EA751
   .carousel-btn
     display: none !important
     position: absolute !important
-    top: 105px !important          // 👈 опустили вниз на половину высоты (44px / 2)
-    transform: none !important // половина высоты → между заголовком и фото
-    width: 36px !important                 // всегда идеальный круг
+    top: 105px !important          
+    transform: none !important 
+    width: 36px !important                 
     height: 36px !important
     padding: 0 !important
     box-sizing: border-box !important
@@ -2455,7 +2383,7 @@ $text-color-light: #5EA751
     border: none !important
     background-color: rgba(203,255,181,0.9) !important
 
-    display: flex !important               // центрируем стрелку
+    display: flex !important               
     align-items: center !important
     justify-content: center !important
     font-size: 22px !important
@@ -2468,7 +2396,7 @@ $text-color-light: #5EA751
       cursor: default
 
       &:hover
-        transform: translateY(-50%)   // убираем «подпрыгивание»
+        transform: translateY(-50%)   
         box-shadow: none
 
     &.prev
@@ -2514,11 +2442,11 @@ $text-color-light: #5EA751
       position: relative !important
       padding: 0 !important
 
-    /* убираем большую зелёную дугу на мобиле */
+    
     &__path
       display: none !important
 
-    /* мы ПОЛНОСТЬЮ переопределяем сетку */
+    
     &__grid
       display: flex !important
       flex-wrap: wrap !important
@@ -2531,9 +2459,9 @@ $text-color-light: #5EA751
       position: relative !important
       left: 0 !important   
 
-  /* общая карточка с фото (МЕТРО, МЕЧЕТЬ, ДОМ, ПАРКОВКА, СТУДИЯ) */
+  
   .findus-card
-    flex: 1 1 calc(50% - 8px) !important  // ← 2 колонки с отступом
+    flex: 1 1 calc(50% - 8px) !important  
     max-width: calc(50% - 8px) !important
     display: flex !important
     flex-direction: column !important
@@ -2562,7 +2490,7 @@ $text-color-light: #5EA751
       color: $text-color-light !important
       letter-spacing: .3px !important
 
-  /* контейнер с "МЫ ТУТ!" */
+ 
   .findus-curvecell
     flex: 1 1 calc(50% - 8px) !important
     max-width: calc(50% - 8px) !important
@@ -2573,7 +2501,7 @@ $text-color-light: #5EA751
     padding: 0 !important
     margin: 0 !important
     background: transparent !important
-  /* сам блок "МЫ ТУТ!" */
+  
   .findus-cta
     margin-top: 32px !important
     gap: 10px !important
@@ -2597,7 +2525,7 @@ $text-color-light: #5EA751
       margin: 0 0 0px 0 !important
 
     &__addr
-      /* если адрес не нужен под "МЫ ТУТ!" - можно скрыть */
+      
       display: block !important 
       font-size: 16px          
       line-height: 0.8 !important
@@ -2614,7 +2542,7 @@ $text-color-light: #5EA751
       padding: 0 14px !important
       background: $main-color-green
       border: none
-      //border: 1px solid $text-color-light !important
+      
       border-radius: 999px !important
       color: $text-color !important
       cursor: pointer !important
@@ -2711,7 +2639,7 @@ $text-color-light: #5EA751
 @media (max-width: 768px)
   .reviews__container
     background-color: $main-color
-    background-image: url('../image/BGGREENTWO.png') // исходная моб. картинка
+    background-image: url('../image/BGGREENTWO.svg') // исходная моб. картинка
     background-repeat: no-repeat
     background-position: center
     background-size: 100% 100%
@@ -2728,7 +2656,7 @@ $text-color-light: #5EA751
     right: 15px
     width: 90px
     height: 90px
-    background: url('../image/ZIPPINK.png') no-repeat center / contain
+    background: url('../image/ZIPPINK.svg') no-repeat center / contain
     pointer-events: none
 
   .reviews-card
