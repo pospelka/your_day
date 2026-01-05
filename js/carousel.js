@@ -406,31 +406,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //ПОКА ТУТ ПУСТО
-document.addEventListener('DOMContentLoaded', () => {
-    const modal   = document.getElementById('videoModal-2');
-    if (!modal) return;
+const videoModal = document.getElementById('videoModal');
+const tourVideo = videoModal.querySelector('video');
+const closeVideoBtn = videoModal.querySelector('.video-modal__close');
+const videoBackdrop = videoModal.querySelector('.video-modal__backdrop');
 
-    const openButtons = document.querySelectorAll('.price-card__video');
-    const closeBtn    = modal.querySelector('.video-modal__close');
-    const backdrop    = modal.querySelector('.video-modal__backdrop');
-
-    const openModal = (e) => {
-      // чтобы страница не скроллилась к началу и не переходила по ссылке
-      if (e) e.preventDefault();
-      modal.classList.add('video-modal--active');
-    };
-
-    const closeModal = () => {
-      modal.classList.remove('video-modal--active');
-    };
-
-    openButtons.forEach(btn => {
-      btn.addEventListener('click', openModal);
-    });
-
-    if (closeBtn)  closeBtn.addEventListener('click', closeModal);
-    if (backdrop)  backdrop.addEventListener('click', closeModal);
+document.querySelectorAll('.price-card__video').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    const src = btn.dataset.video; // data-video с ссылкой
+    tourVideo.src = src;
+    tourVideo.currentTime = 0;
+    tourVideo.play();
+    videoModal.classList.add('video-modal--active');
+    document.body.style.overflow = 'hidden';
   });
+});
+
+closeVideoBtn.addEventListener('click', () => {
+  tourVideo.pause();
+  tourVideo.src = '';
+  videoModal.classList.remove('video-modal--active');
+  document.body.style.overflow = '';
+});
+
+videoBackdrop.addEventListener('click', () => {
+  tourVideo.pause();
+  tourVideo.src = '';
+  videoModal.classList.remove('video-modal--active');
+  document.body.style.overflow = '';
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && videoModal.classList.contains('video-modal--active')) {
+    tourVideo.pause();
+    tourVideo.src = '';
+    videoModal.classList.remove('video-modal--active');
+    document.body.style.overflow = '';
+  }
+});
+
 
 //ДЛЯ АДАПТИВА
 // === ФИКС ДЛЯ ANDROID (VH-БАГ) ===

@@ -306,9 +306,14 @@
             </div>
           </div>
 
-          <a class="price-card__video" href="#" aria-label="Смотреть видео по пакету">
+          <button
+            class="price-card__video"
+            type="button"
+            data-video="video/fei-i-elfi.mp4"
+            aria-label="Смотреть видео по пакету"
+          >
             Смотреть видео<span class="price-card__arrow"></span>
-          </a>
+          </button>
         </article>
 
         <!--прайс второй -->
@@ -364,9 +369,14 @@
             </div>
           </div>
 
-          <a class="price-card__video" href="#" aria-label="Смотреть видео по пакету">
+          <button
+            class="price-card__video"
+            type="button"
+            data-video="video/party-boom.mp4"
+            aria-label="Смотреть видео по пакету"
+          >
             Смотреть видео<span class="price-card__arrow"></span>
-          </a>
+          </button>
         </article>
 
         <!--прайс третий -->
@@ -416,9 +426,14 @@
             </div>
           </div>
 
-          <a class="price-card__video" href="#" aria-label="Смотреть видео по пакету">
+          <button
+            class="price-card__video"
+            type="button"
+            data-video="video/v-trende.mp4"
+            aria-label="Смотреть видео по пакету"
+          >
             Смотреть видео<span class="price-card__arrow"></span>
-          </a>
+          </button>
         </article>
 
         <!--прайс четвертый -->
@@ -471,9 +486,14 @@
             </div>
           </div>
 
-          <a class="price-card__video" href="#" aria-label="Смотреть видео по пакету">
+          <button
+            class="price-card__video"
+            type="button"
+            data-video="video/v-trende.mp4"
+            aria-label="Смотреть видео по пакету"
+          >
             Смотреть видео<span class="price-card__arrow"></span>
-          </a>
+          </button>
         </article>
 
         <!--прайс пятый -->
@@ -529,9 +549,14 @@
             </div>
           </div>
 
-          <a class="price-card__video" href="#" aria-label="Смотреть видео по пакету">
+          <button
+            class="price-card__video"
+            type="button"
+            data-video="video/v-trende.mp4"
+            aria-label="Смотреть видео по пакету"
+          >
             Смотреть видео<span class="price-card__arrow"></span>
-          </a>
+          </button>
         </article>
 
         <!--прайс шестой -->
@@ -590,9 +615,14 @@
             </div>
           </div>
 
-          <a class="price-card__video" href="#" aria-label="Смотреть видео по пакету">
+          <button
+            class="price-card__video"
+            type="button"
+            data-video="video/v-trende.mp4"
+            aria-label="Смотреть видео по пакету"
+          >
             Смотреть видео<span class="price-card__arrow"></span>
-          </a>
+          </button>
         </article>
 
         <!--прайс седьмой -->
@@ -645,9 +675,14 @@
             </div>
           </div>
 
-          <a class="price-card__video" href="#" aria-label="Смотреть видео по пакету">
+          <button
+            class="price-card__video"
+            type="button"
+            data-video="video/v-trende.mp4"
+            aria-label="Смотреть видео по пакету"
+          >
             Смотреть видео<span class="price-card__arrow"></span>
-          </a>
+          </button>
         </article>
       </div>
 
@@ -887,11 +922,12 @@
       <div class="video-modal" id="videoModal-2">
   <div class="video-modal__backdrop"></div>
 
-  <div class="video-modal__dialog">
-    <button class="video-modal__close" type="button">&times;</button>
-    <div class="video-modal__body">
-      Пока тут пусто
-    </div>
+  <div class="video-modal__body">
+    <video
+      id="modalVideo"
+      controls
+      playsinline
+    ></video>
   </div>
  </div>
  <div class="offline-overlay" id="offlineOverlay">
