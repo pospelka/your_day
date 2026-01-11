@@ -974,3 +974,4 @@ acceptBtn.addEventListener('click', () => {
   banner.style.display = 'none';
 });
 
+

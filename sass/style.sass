@@ -1400,11 +1400,6 @@ $text-color-light: #5EA751
 
 
 
-
-
-
-
-
 //АДАПТИВ
 
 //СЕКЦИЯ ПЕРВАЯ
@@ -2818,47 +2813,48 @@ $text-color-light: #5EA751
     transform: scale(1)
 
 ///////КУКИ
-.cookie-banner
-  position: fixed
-  left: 0
-  right: 0
-  bottom: 0        // ⬅ теперь снизу экрана
-  display: none
-  align-items: center
-  justify-content: center
-  z-index: 99999
-  padding: 0 16px   // чтобы по бокам не сливалось
+@media (max-width: 768px)
+  .cookie-banner
+    position: fixed
+    left: 0
+    right: 0
+    bottom: 0        // ⬅ теперь снизу экрана
+    display: none
+    align-items: center
+    justify-content: center
+    z-index: 99999
+    padding: 0 16px   // чтобы по бокам не сливалось
 
-  &__box
-    background: #eaf7ea
-    padding: 16px 20px
-    border-radius: 16px 16px 0 0  // верхние скругления
-    width: 300px
-    max-width: 100%
+    &__box
+      background: #eaf7ea
+      padding: 16px 20px
+      border-radius: 16px 16px 0 0  // верхние скругления
+      width: 300px
+      max-width: 100%
+      text-align: center
+
+  .cookie-text
+    margin-bottom: 12px
+    font-size: 9px
+    line-height: 1.4
+    color: #2e6b2e
     text-align: center
 
-.cookie-text
-  margin-bottom: 12px
-  font-size: 13px
-  line-height: 1.4
-  color: #2e6b2e
-  text-align: center
+    span
+      display: block
 
-  span
-    display: block
+  .cookie-banner button
+    background: #4caf50
+    border: none
+    color: #fff
+    padding: 10px 20px
+    border-radius: 24px
+    font-size: 9px
+    cursor: pointer
+    transition: background .2s ease
 
-.cookie-banner button
-  background: #4caf50
-  border: none
-  color: #fff
-  padding: 10px 20px
-  border-radius: 24px
-  font-size: 13px
-  cursor: pointer
-  transition: background .2s ease
-
-  &:hover
-    background: #43a047
+    &:hover
+      background: #43a047
 
 
 
